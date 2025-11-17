@@ -6,4 +6,3 @@ export class UpdateProfileImageDto {
   @IsUrl()
   url: string;
 }
-

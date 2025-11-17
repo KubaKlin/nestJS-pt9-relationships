@@ -54,4 +54,3 @@ export class CommentsController {
     await this.commentsService.delete(id);
   }
 }
-

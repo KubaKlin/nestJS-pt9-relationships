@@ -5,4 +5,3 @@ export class ProfileImageNotFoundException extends NotFoundException {
     super(`Profile image for user with id ${userId} not found`);
   }
 }
-

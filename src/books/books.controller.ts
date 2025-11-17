@@ -72,4 +72,3 @@ export class BooksController {
     await this.booksService.delete(id);
   }
 }
-

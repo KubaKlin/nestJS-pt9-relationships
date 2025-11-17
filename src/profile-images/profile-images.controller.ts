@@ -18,9 +18,7 @@ import type { RequestWithUser } from '../authentication/request-with-user';
 
 @Controller('profile-images')
 export class ProfileImagesController {
-  constructor(
-    private readonly profileImagesService: ProfileImagesService,
-  ) {}
+  constructor(private readonly profileImagesService: ProfileImagesService) {}
 
   @Post()
   @UseGuards(JwtAuthenticationGuard)
@@ -28,10 +26,7 @@ export class ProfileImagesController {
     @Body() profileImageData: CreateProfileImageDto,
     @Req() request: RequestWithUser,
   ) {
-    return this.profileImagesService.create(
-      request.user.id,
-      profileImageData,
-    );
+    return this.profileImagesService.create(request.user.id, profileImageData);
   }
 
   @Get('user/:userId')
@@ -60,4 +55,3 @@ export class ProfileImagesController {
     await this.profileImagesService.delete(request.user.id);
   }
 }
-

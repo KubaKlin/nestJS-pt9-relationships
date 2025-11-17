@@ -5,4 +5,3 @@ export class CommentNotFoundException extends NotFoundException {
     super(`Comment with id ${id} not found`);
   }
 }
-

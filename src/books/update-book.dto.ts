@@ -13,4 +13,3 @@ export class UpdateBookDto {
   @IsOptional()
   authorIds?: number[];
 }
-

@@ -13,4 +13,3 @@ export class CreateBookDto {
   @IsOptional()
   authorIds?: number[];
 }
-

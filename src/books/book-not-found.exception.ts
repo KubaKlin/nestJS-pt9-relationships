@@ -5,4 +5,3 @@ export class BookNotFoundException extends NotFoundException {
     super(`Book with id ${id} not found`);
   }
 }
-

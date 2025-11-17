@@ -9,4 +9,3 @@ export class CreateCommentDto {
   @IsNotEmpty()
   articleId: number;
 }
-

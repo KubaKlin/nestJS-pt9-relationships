@@ -10,4 +10,3 @@ import { DatabaseModule } from '../database/database.module';
   exports: [CommentsService],
 })
 export class CommentsModule {}
-
