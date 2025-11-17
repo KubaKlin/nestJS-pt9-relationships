@@ -4,14 +4,23 @@ import { ArticleDto } from './article.dto';
 import { Prisma } from '../../generated/prisma';
 import { PrismaError } from '../database/prisma-error.enum';
 import { ArticleNotFoundException } from './article-not-fount.exception';
+import { CreateArticleDto } from './create-article.dto';
 
 @Injectable()
 export class ArticlesService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  create(article: ArticleDto) {
+  create(article: CreateArticleDto, authorId: number) {
     return this.prismaService.article.create({
-      data: article,
+      data: {
+        title: article.title,
+        text: article.text,
+        author: {
+          connect: {
+            id: authorId,
+          },
+        },
+      },
     });
   }
 

@@ -23,7 +23,7 @@ export class ArticlesController {
   @Post()
   @UseGuards(JwtAuthenticationGuard)
   create(@Body() article: CreateArticleDto, @Req() request: RequestWithUser) {
-    return this.articlesService.create(article);
+    return this.articlesService.create(article, request.user.id);
   }
 
   @Get()
