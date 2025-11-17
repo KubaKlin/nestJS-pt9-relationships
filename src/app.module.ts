@@ -7,6 +7,7 @@ import Joi from 'joi';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ProfileImagesModule } from './profile-images/profile-images.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ProfileImagesModule } from './profile-images/profile-images.module';
     AuthenticationModule,
     CategoriesModule,
     ProfileImagesModule,
+    CommentsModule,
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DATABASE_URL: Joi.string().required(),

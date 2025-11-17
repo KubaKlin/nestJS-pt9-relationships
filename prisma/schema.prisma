@@ -46,6 +46,7 @@ model Article {
   authorId           Int
   categories         Category[]
   articlesCategories ArticlesCategories[]
+  comments           Comment[]
 }
 
 model ArticlesCategories {
@@ -55,4 +56,12 @@ model ArticlesCategories {
   categoryId Int
 
   @@id([articleId, categoryId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  article   Article  @relation(fields: [articleId], references: [id])
+  articleId Int
 }
