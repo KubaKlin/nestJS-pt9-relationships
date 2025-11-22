@@ -51,7 +51,7 @@ export class ProfileImagesController {
 
   @Delete()
   @UseGuards(JwtAuthenticationGuard)
-  async delete(@Req() request: RequestWithUser) {
-    await this.profileImagesService.delete(request.user.id);
+  delete(@Req() request: RequestWithUser) {
+    return this.profileImagesService.delete(request.user.id);
   }
 }
