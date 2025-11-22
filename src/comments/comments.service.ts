@@ -10,7 +10,7 @@ import { CommentNotFoundException } from './comment-not-found.exception';
 export class CommentsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(commentData: CreateCommentDto) {
+  async create(commentData: CreateCommentDto & { articleId: number }) {
     try {
       return await this.prismaService.comment.create({
         data: {
@@ -31,29 +31,6 @@ export class CommentsService {
       }
       throw error;
     }
-  }
-
-  async getAll() {
-    return this.prismaService.comment.findMany({
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-  }
-
-  async getById(id: number) {
-    const comment = await this.prismaService.comment.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        article: true,
-      },
-    });
-    if (!comment) {
-      throw new CommentNotFoundException(id);
-    }
-    return comment;
   }
 
   async getByArticleId(articleId: number) {
