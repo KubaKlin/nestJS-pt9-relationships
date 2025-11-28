@@ -14,16 +14,62 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Article {
-  id    Int    @id @default(autoincrement())
-  title String
-  text  String
+model User {
+  id           Int            @id @default(autoincrement())
+  email        String         @unique
+  name         String
+  password     String
+  phoneNumber  String?
+  articles     Article[]
+  profileImage ProfileImage?
+  books        Book[]
 }
 
-model User {
+model ProfileImage {
+  id     Int    @id @default(autoincrement())
+  url    String
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    @unique
+}
+
+model Category {
+  id                 Int                  @id @default(autoincrement())
+  name               String
+  articles           Article[]
+  articlesCategories ArticlesCategories[]
+}
+
+model Article {
+  id                 Int                  @id @default(autoincrement())
+  title              String
+  text               String?
+  author             User                 @relation(fields: [authorId], references: [id])
+  authorId           Int
+  categories         Category[]
+  articlesCategories ArticlesCategories[]
+  comments           Comment[]
+}
+
+model ArticlesCategories {
+  article    Article  @relation(fields: [articleId], references: [id])
+  articleId  Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@id([articleId, categoryId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  article   Article  @relation(fields: [articleId], references: [id])
+  articleId Int
+}
+
+model Book {
   id          Int     @id @default(autoincrement())
-  email       String  @unique
-  name        String
-  password    String
-  phoneNumber String?
+  title       String
+  description String?
+  authors     User[]
 }
