@@ -72,7 +72,6 @@ export class ArticlesController {
   @Patch(':articleId/comments/:commentId')
   @UseGuards(JwtAuthenticationGuard)
   updateComment(
-    @Param('articleId', ParseIntPipe) articleId: number,
     @Param('commentId', ParseIntPipe) commentId: number,
     @Body() commentData: UpdateCommentDto,
   ) {
@@ -82,7 +81,6 @@ export class ArticlesController {
   @Delete(':articleId/comments/:commentId')
   @UseGuards(JwtAuthenticationGuard)
   async deleteComment(
-    @Param('articleId', ParseIntPipe) articleId: number,
     @Param('commentId', ParseIntPipe) commentId: number,
   ) {
     await this.commentsService.delete(commentId);
