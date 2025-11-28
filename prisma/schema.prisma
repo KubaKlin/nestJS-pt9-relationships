@@ -23,7 +23,6 @@ model User {
   articles     Article[]
   profileImage ProfileImage?
   books        Book[]
-  booksAuthors BooksAuthors[]
 }
 
 model ProfileImage {
@@ -69,18 +68,8 @@ model Comment {
 }
 
 model Book {
-  id           Int            @id @default(autoincrement())
-  title        String
-  description  String?
-  authors      User[]
-  booksAuthors BooksAuthors[]
-}
-
-model BooksAuthors {
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
-  book   Book @relation(fields: [bookId], references: [id])
-  bookId Int
-
-  @@id([userId, bookId])
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  authors     User[]
 }
